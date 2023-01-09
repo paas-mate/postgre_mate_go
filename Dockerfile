@@ -1,13 +1,13 @@
-FROM ttbb/base:go AS build
-COPY . /opt/sh/compile
-WORKDIR /opt/sh/compile/pkg
+FROM shoothzj/base:go AS build
+COPY . /opt
+WORKDIR /opt/pkg
 RUN go build -o postgre_mate .
 
 FROM ttbb/postgre:nake
 
-COPY --chown=sh:sh docker-build /opt/sh/postgre/mate
+COPY docker-build /usr/lib/postgresql/15/mate
 
-COPY --from=build --chown=sh:sh /opt/sh/compile/pkg/postgre_mate /opt/sh/postgre/mate/postgre_mate
+COPY --from=build /opt/pkg/postgre_mate /usr/lib/postgresql/15/mate/postgre_mate
 
 USER sh
-CMD ["/usr/bin/dumb-init", "bash", "-vx", "/opt/sh/postgre/mate/scripts/start.sh"]
+CMD ["/usr/bin/dumb-init", "bash", "-vx", "/usr/lib/postgresql/15/mate/scripts/start.sh"]
