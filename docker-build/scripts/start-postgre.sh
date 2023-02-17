@@ -5,6 +5,13 @@ POSTGRE_MATE=$POSTGRE_HOME/mate
 HBA_CONF=$POSTGRE_DATA/pg_hba.conf
 echo 'local   all             all                                     trust' >$HBA_CONF
 echo 'host    all             all             127.0.0.1/32            trust' >>$HBA_CONF
+echo "host    all             all             ::1/128                 trust" >>$HBA_CONF
+echo "local   replication     all                                     trust" >>$HBA_CONF
+echo "host    replication     all             127.0.0.1/32            trust" >>$HBA_CONF
+echo "host    replication     all             ::1/128                 trust" >>$HBA_CONF
+echo "host    replication     all             ::1/128                 trust" >>$HBA_CONF
+echo "host    all             all              0.0.0.0/0              ${REMOTE_AUTH_TYPE:-trust}"   >>$HBA_CONF
+echo "host    all             all              ::/0                   ${REMOTE_AUTH_TYPE:-trust}"   >>$HBA_CONF
 mkdir -p $POSTGRE_DATA
 chown -R postgres:postgres $POSTGRE_DATA
 # postgre need to init as non-root user
