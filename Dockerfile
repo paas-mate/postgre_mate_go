@@ -5,8 +5,10 @@ RUN go build -o postgre_mate .
 
 FROM ttbb/postgre:nake
 
-COPY docker-build /usr/lib/postgresql/15/mate
+COPY --chown=postgres:postgres docker-build /usr/lib/postgresql/15/mate
 
-COPY --from=build /opt/pkg/postgre_mate /usr/lib/postgresql/15/mate/postgre_mate
+COPY --chown=postgres:postgres --from=build /opt/pkg/postgre_mate /usr/lib/postgresql/15/mate/postgre_mate
+
+USER postgres
 
 CMD ["/usr/bin/dumb-init", "bash", "-vx", "/usr/lib/postgresql/15/mate/scripts/start.sh"]
