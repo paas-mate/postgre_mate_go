@@ -24,5 +24,7 @@ func main() {
 	if !config.RemoteMode {
 		postgre.Start()
 	}
-	g.Server().Run()
+	s := g.Server()
+    s.SetPort(10001)
+    s.Run()
 }
