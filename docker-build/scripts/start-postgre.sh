@@ -3,7 +3,12 @@
 # postgre need to init as non-root user
 $POSTGRE_HOME/bin/initdb -U postgres -D $POSTGRE_DATA --no-locale --encoding=UTF8
 PG_CONF=$POSTGRE_DATA/postgresql.conf
-echo "timezone = 'UTC'" >$PG_CONF
+echo "listen_addresses = '*'" >$PG_CONF
+echo "timezone = 'UTC'" >>$PG_CONF
+echo "lc_messages = 'C'" >>$PG_CONF
+echo "lc_monetary = 'C'" >>$PG_CONF
+echo "lc_numeric = 'C'" >>$PG_CONF
+echo "lc_time = 'C'" >>$PG_CONF
 echo "log_timezone = 'UTC'" >>$PG_CONF
 echo "datestyle = 'iso, mdy'" >>$PG_CONF
 echo "default_text_search_config = 'pg_catalog.english'" >>$PG_CONF
