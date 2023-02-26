@@ -11,4 +11,6 @@ COPY --chown=postgres:postgres --from=build /opt/pkg/postgre_mate /usr/lib/postg
 
 USER postgres
 
+ENV POSTGRE_DATA /usr/lib/postgresql/15/data
+
 CMD ["/usr/bin/dumb-init", "bash", "-vx", "/usr/lib/postgresql/15/mate/scripts/start.sh"]
