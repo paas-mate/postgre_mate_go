@@ -27,3 +27,7 @@ echo "host    all             all              ::/0                   ${REMOTE_A
 
 $POSTGRE_HOME/bin/pg_ctl -D $POSTGRE_DATA start
 psql -U postgres -f $POSTGRE_HOME/mate/sql/init_database.sql
+# apollo
+psql -U postgres -f $POSTGRE_HOME/mate/sql/apollo_init_user.sql
+psql -U postgres -f $POSTGRE_HOME/mate/sql/apolloconfigdb.sql
+psql -U postgres -f $POSTGRE_HOME/mate/sql/apolloportaldb.sql
