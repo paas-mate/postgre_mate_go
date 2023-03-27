@@ -13,8 +13,7 @@
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
 --
-\c
-"ApolloConfigDB"
+\c "ApolloConfigDB"
 /* # Dump of table app */
 /* # ------------------------------------------------------------ */
 
@@ -29,7 +28,7 @@ CREATE TABLE apolloconfig."App"
     "OrgName"                   varchar(64)  NOT NULL DEFAULT 'default',         -- COMMENT '部门名字'
     "OwnerName"                 varchar(500) NOT NULL DEFAULT 'default',         -- COMMENT 'ownerName'
     "OwnerEmail"                varchar(500) NOT NULL DEFAULT 'default',         -- COMMENT 'ownerEmail'
-    "IsDeleted"                 BOOL         NOT NULL DEFAULT b'0',              -- COMMENT '1: deleted, 0: normal'
+    "IsDeleted"                 bit          NOT NULL DEFAULT b'0',              -- COMMENT '1: deleted, 0: normal'
     "DeletedAt"                 BIGINT       NOT NULL DEFAULT '0',               -- COMMENT 'Delete timestamp based on milliseconds'
     "DataChange_CreatedBy"      varchar(64)  NOT NULL DEFAULT 'default',         -- COMMENT '创建人邮箱前缀'
     "DataChange_CreatedTime"    timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP, -- COMMENT '创建时间'
